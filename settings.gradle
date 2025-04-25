@@ -1,0 +1,3 @@
+rootProject.name = 'hologrami'
+include 'hologrami-api'
+include 'hologrami-paper'

@@ -1,0 +1,11 @@
+dependencies {
+    // https://mvnrepository.com/artifact/net.kyori/adventure-api
+    api 'net.kyori:adventure-api:4.20.0'
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -1,0 +1,42 @@
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+
+    group = 'dev.stijn.hologrami'
+    version = System.getenv('RELEASE_VERSION') ?: '0.0.0-LOCAL'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        // https://mvnrepository.com/artifact/org.jetbrains/annotations
+        compileOnlyApi 'org.jetbrains:annotations:26.0.2'
+    }
+}
+
+subprojects {
+    apply plugin: 'maven-publish'
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+                groupId = project.group
+                artifactId = project.name
+                version = project.version
+            }
+        }
+
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/Stijn-van-Nieulande/hologrami") // Replace
+                credentials {
+                    username = System.getenv("GITHUB_ACTOR")
+                    password = System.getenv("GITHUB_TOKEN")
+                }
+            }
+        }
+    }
+}

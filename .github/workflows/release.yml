@@ -1,0 +1,40 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  publish:
+    name: Publish Maven Packages
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - id: get_version
+        name: Get version
+        uses: jannemattila/get-version-from-tag@22de24a56e53ef11268538c9e6a77659a142afa7
+
+      - name: Build and Publish
+        run: ./gradlew publish
+        env:
+          USERNAME: ${{ secrets.GITHUB_ACTOR }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_VERSION: ${{ steps.get_version.outputs.version }}
+
+      - name: Update README version
+        run: |
+          sed -i "s/{{VERSION}}/${{ steps.get_version.outputs.version }}/g" README.md
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add README.md
+          git commit -m "Update README to version ${{ steps.get_version.outputs.version }}"
+          git push
