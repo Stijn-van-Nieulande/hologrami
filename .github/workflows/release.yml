@@ -9,6 +9,9 @@ jobs:
   publish:
     name: Publish Maven Packages
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
 
     steps:
       - uses: actions/checkout@v4
@@ -19,22 +22,25 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - id: get_version
-        name: Get version
-        uses: jannemattila/get-version-from-tag@22de24a56e53ef11268538c9e6a77659a142afa7
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Extract version from tag
+        id: get_version
+        run: echo "RELEASE_VERSION=${GITHUB_REF##*/v}" >> $GITHUB_ENV
 
       - name: Build and Publish
         run: ./gradlew publish
         env:
           USERNAME: ${{ secrets.GITHUB_ACTOR }}
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_VERSION: ${{ steps.get_version.outputs.version }}
+          RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
 
       - name: Update README version
         run: |
-          sed -i "s/{{VERSION}}/${{ steps.get_version.outputs.version }}/g" README.md
+          sed "s/{{VERSION}}/${{ env.RELEASE_VERSION }}/g" README.template.md > README.md
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add README.md
-          git commit -m "Update README to version ${{ steps.get_version.outputs.version }}"
-          git push
+          git commit -m "Update README to version ${{ env.RELEASE_VERSION }}"
+          git push origin HEAD:main
