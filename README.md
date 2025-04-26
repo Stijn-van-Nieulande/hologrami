@@ -28,14 +28,14 @@ Supports text, item, and block parts with scaling, rotation, pivoting, and basic
 <dependency>
   <groupId>dev.stijn.hologrami</groupId>
   <artifactId>hologrami-core</artifactId>
-  <version>0.0.0+9</version>
+  <version>0.0.0+10</version>
 </dependency>
 
 <!-- Paper adapter -->
 <dependency>
   <groupId>dev.stijn.hologrami</groupId>
   <artifactId>hologrami-paper</artifactId>
-  <version>0.0.0+9</version>
+  <version>0.0.0+10</version>
 </dependency>
 ```
 
@@ -52,10 +52,10 @@ repositories {
 
 ```groovy
 // Core API
-implementation "dev.stijn.hologrami:hologrami-core:0.0.0+9"
+implementation "dev.stijn.hologrami:hologrami-core:0.0.0+10"
 
 // Paper adapter
-implementation "dev.stijn.hologrami:hologrami-paper:0.0.0+9"
+implementation "dev.stijn.hologrami:hologrami-paper:0.0.0+10"
 ```
 
 ## 🚀 Quick Start (Paper Example)
