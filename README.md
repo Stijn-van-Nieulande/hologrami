@@ -13,13 +13,16 @@ Supports text, item, and block parts with scaling, rotation, pivoting, and basic
 
 ## 🛠 Installation
 
+> [!INFO]
+> https://maven-packages.stijn.dev/ is used as proxy to fix a [missing GitHub feature](https://github.com/orgs/community/discussions/26634). You can still use the original https://maven.pkg.github.com/Stijn-van-Nieulande/hologrami if you like. This however does requires you to authenticate to GitHub within your maven settings.
+
 ### Maven
 
 ```xml
 
 <repository>
     <id>hologrami</id>
-    <url>https://maven.pkg.github.com/Stijn-van-Nieulande/hologrami</url>
+    <url>https://maven-packages.stijn.dev/</url>
 </repository>
 ```
 
@@ -27,15 +30,15 @@ Supports text, item, and block parts with scaling, rotation, pivoting, and basic
 <!-- Core API -->
 <dependency>
   <groupId>dev.stijn.hologrami</groupId>
-  <artifactId>hologrami-core</artifactId>
-  <version>0.0.0+11</version>
+  <artifactId>hologrami-api</artifactId>
+  <version>0.0.0+12</version>
 </dependency>
 
 <!-- Paper adapter -->
 <dependency>
   <groupId>dev.stijn.hologrami</groupId>
   <artifactId>hologrami-paper</artifactId>
-  <version>0.0.0+11</version>
+  <version>0.0.0+12</version>
 </dependency>
 ```
 
@@ -45,17 +48,17 @@ Supports text, item, and block parts with scaling, rotation, pivoting, and basic
 repositories {
     maven {
         name = "hologrami"
-        url = "https://maven.pkg.github.com/Stijn-van-Nieulande/hologrami"
+        url = "https://maven-packages.stijn.dev/"
     }
 }
 ```
 
 ```groovy
 // Core API
-implementation "dev.stijn.hologrami:hologrami-core:0.0.0+11"
+implementation "dev.stijn.hologrami:hologrami-api:0.0.0+12"
 
 // Paper adapter
-implementation "dev.stijn.hologrami:hologrami-paper:0.0.0+11"
+implementation "dev.stijn.hologrami:hologrami-paper:0.0.0+12"
 ```
 
 ## 🚀 Quick Start (Paper Example)
