@@ -13,7 +13,7 @@ Supports text, item, and block parts with scaling, rotation, pivoting, and basic
 
 ## 🛠 Installation
 
-> [!INFO]
+> [!NOTE]
 > https://maven-packages.stijn.dev/ is used as proxy to fix a [missing GitHub feature](https://github.com/orgs/community/discussions/26634). You can still use the original https://maven.pkg.github.com/Stijn-van-Nieulande/hologrami if you like. This however does requires you to authenticate to GitHub within your maven settings.
 
 ### Maven
